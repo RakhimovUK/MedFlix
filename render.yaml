@@ -10,6 +10,8 @@ services:
         value: "24"
       - key: TELEGRAM_BOT_TOKEN
         sync: false
+      - key: DATABASE_PATH
+        value: /opt/render/project/src/artifacts/api-server/data/kino-bot.sqlite
       - key: TELEGRAM_ADMIN_IDS
         value: "1733531423"
     disk:

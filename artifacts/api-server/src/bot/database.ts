@@ -41,10 +41,12 @@ export type SeriesEpisode = {
   createdAt: string;
 };
 
-const dataDir = path.resolve(process.cwd(), "data");
-mkdirSync(dataDir, { recursive: true });
+const databasePath = process.env.DATABASE_PATH
+  ? path.resolve(process.env.DATABASE_PATH)
+  : path.resolve(process.cwd(), "data", "kino-bot.sqlite");
+mkdirSync(path.dirname(databasePath), { recursive: true });
 
-const database = new DatabaseSync(path.join(dataDir, "kino-bot.sqlite"));
+const database = new DatabaseSync(databasePath);
 
 database.exec(`
   PRAGMA journal_mode = WAL;
